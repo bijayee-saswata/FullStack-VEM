@@ -5,28 +5,22 @@ const url = 'http://localhost:5000/api/posts/';
 class postService{
     //Get post
     static getPosts(){
-        axios.get(url)
-        .then(function (data) {
-        //    data.map(post => ({
-        //        ...post,
-        //        createdAt: new Date(post.createdAt)
-        //    }))
-        console.log(data);
-        function printValues(obj) {
-            for (var key in obj) {
-                if (typeof obj[key] === "object") {
-                    printValues(obj[key]);   
-                } else {
-                    console.log(obj[key]);    
-                }
+        return new Promise(async (resolve, reject) =>{
+            try{
+                const res = await axios.get(url);
+                const data = res.data;
+                resolve(
+                    data.map(post => ({
+                        ...post,
+                        createdAt : new Date(post.createdAt)
+                    }))
+                );
+            } catch(err){  
+                reject(err);
             }
-        }
-        
-        printValues(data);
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+       
+        
     }
     //create post
 

@@ -5,7 +5,7 @@ const router = express.Router();
 
 //mongodb connection
 async function loadPosts(){
-    const client = await mongodb.connect('mongodb://abc123:abc123@ds131983.mlab.com:31983/nodeblog', {
+    const client = await mongodb.connect('mongodb://uid:ups@ds.mlab.com:31983/nodeblog', {
         useNewUrlParser : true
     });
     return client.db('nodeblog').collection('posts');
